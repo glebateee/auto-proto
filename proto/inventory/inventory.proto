@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package inventory;
+
+option go_package = "glebateee.ai.v1;ai1";
+
+service Inventory{
+    rpc Health(HealthRequest) returns (HealthResponse);
+}
+
+message HealthRequest{
+    string status = 1; 
+}
+
+message HealthResponse{
+    string status = 1;
+}
