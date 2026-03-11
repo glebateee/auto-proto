@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package inventory;
 
-option go_package = "glebateee.ai.v1;ai1";
+option go_package = "glebateee.ai.v1;aiv1";
 
 service Inventory{
     rpc Health(HealthRequest) returns (HealthResponse);
