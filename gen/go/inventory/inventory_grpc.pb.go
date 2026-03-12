@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: inventory/inventory.proto
 
-package ai1
+package aiv1
 
 import (
 	context "context"
@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Inventory_Health_FullMethodName = "/inventory.Inventory/Health"
+	Inventory_Health_FullMethodName          = "/inventory.Inventory/Health"
+	Inventory_ProductPageSize_FullMethodName = "/inventory.Inventory/ProductPageSize"
 )
 
 // InventoryClient is the client API for Inventory service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InventoryClient interface {
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
+	ProductPageSize(ctx context.Context, in *ProductPageSizeRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error)
 }
 
 type inventoryClient struct {
@@ -47,11 +49,22 @@ func (c *inventoryClient) Health(ctx context.Context, in *HealthRequest, opts ..
 	return out, nil
 }
 
+func (c *inventoryClient) ProductPageSize(ctx context.Context, in *ProductPageSizeRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductPageSizeResponse)
+	err := c.cc.Invoke(ctx, Inventory_ProductPageSize_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InventoryServer is the server API for Inventory service.
 // All implementations must embed UnimplementedInventoryServer
 // for forward compatibility.
 type InventoryServer interface {
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
+	ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedInventoryServer struct{}
 
 func (UnimplementedInventoryServer) Health(context.Context, *HealthRequest) (*HealthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Health not implemented")
+}
+func (UnimplementedInventoryServer) ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSize not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
 func (UnimplementedInventoryServer) testEmbeddedByValue()                   {}
@@ -104,6 +120,24 @@ func _Inventory_Health_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Inventory_ProductPageSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductPageSizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServer).ProductPageSize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Inventory_ProductPageSize_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServer).ProductPageSize(ctx, req.(*ProductPageSizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Inventory_ServiceDesc is the grpc.ServiceDesc for Inventory service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Inventory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Health",
 			Handler:    _Inventory_Health_Handler,
+		},
+		{
+			MethodName: "ProductPageSize",
+			Handler:    _Inventory_ProductPageSize_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

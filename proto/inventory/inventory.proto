@@ -6,7 +6,12 @@ option go_package = "glebateee.ai.v1;aiv1";
 
 service Inventory{
     rpc Health(HealthRequest) returns (HealthResponse);
+    rpc ProductPageSize(ProductPageSizeRequest) returns (ProductPageSizeResponse);
 }
+
+// ######################################
+// ##########      Health      ##########
+// ######################################
 
 message HealthRequest{
     string status = 1; 
@@ -14,4 +19,31 @@ message HealthRequest{
 
 message HealthResponse{
     string status = 1;
+}
+
+// ###############################################
+// ##########      ProductPageSize      ##########
+// ###############################################
+
+message Product {
+    int64 id = 1;
+    string sku = 2;
+    string name = 3;
+    string description = 4;
+    string category = 5;
+    string manufacturer = 6;
+    int64 weight = 7;
+    int64 price = 8;
+    int64 base_price = 9;
+    int64 issue_year = 10;
+}
+
+message ProductPageSizeRequest{
+    int64 page = 1;
+    int64 size = 2;
+}
+
+message ProductPageSizeResponse{
+    repeated Product products = 1;
+    int64 available = 2;
 }

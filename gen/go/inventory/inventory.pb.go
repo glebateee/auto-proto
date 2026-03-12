@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: inventory/inventory.proto
 
-package ai1
+package aiv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -109,6 +109,226 @@ func (x *HealthResponse) GetStatus() string {
 	return ""
 }
 
+type Product struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Sku           string                 `protobuf:"bytes,2,opt,name=sku,proto3" json:"sku,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Category      string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
+	Manufacturer  string                 `protobuf:"bytes,6,opt,name=manufacturer,proto3" json:"manufacturer,omitempty"`
+	Weight        int64                  `protobuf:"varint,7,opt,name=weight,proto3" json:"weight,omitempty"`
+	Price         int64                  `protobuf:"varint,8,opt,name=price,proto3" json:"price,omitempty"`
+	BasePrice     int64                  `protobuf:"varint,9,opt,name=base_price,json=basePrice,proto3" json:"base_price,omitempty"`
+	IssueYear     int64                  `protobuf:"varint,10,opt,name=issue_year,json=issueYear,proto3" json:"issue_year,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Product) Reset() {
+	*x = Product{}
+	mi := &file_inventory_inventory_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Product) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Product) ProtoMessage() {}
+
+func (x *Product) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Product.ProtoReflect.Descriptor instead.
+func (*Product) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Product) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Product) GetSku() string {
+	if x != nil {
+		return x.Sku
+	}
+	return ""
+}
+
+func (x *Product) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Product) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Product) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *Product) GetManufacturer() string {
+	if x != nil {
+		return x.Manufacturer
+	}
+	return ""
+}
+
+func (x *Product) GetWeight() int64 {
+	if x != nil {
+		return x.Weight
+	}
+	return 0
+}
+
+func (x *Product) GetPrice() int64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *Product) GetBasePrice() int64 {
+	if x != nil {
+		return x.BasePrice
+	}
+	return 0
+}
+
+func (x *Product) GetIssueYear() int64 {
+	if x != nil {
+		return x.IssueYear
+	}
+	return 0
+}
+
+type ProductPageSizeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Size          int64                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductPageSizeRequest) Reset() {
+	*x = ProductPageSizeRequest{}
+	mi := &file_inventory_inventory_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductPageSizeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductPageSizeRequest) ProtoMessage() {}
+
+func (x *ProductPageSizeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductPageSizeRequest.ProtoReflect.Descriptor instead.
+func (*ProductPageSizeRequest) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ProductPageSizeRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ProductPageSizeRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ProductPageSizeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
+	Available     int64                  `protobuf:"varint,2,opt,name=available,proto3" json:"available,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductPageSizeResponse) Reset() {
+	*x = ProductPageSizeResponse{}
+	mi := &file_inventory_inventory_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductPageSizeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductPageSizeResponse) ProtoMessage() {}
+
+func (x *ProductPageSizeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductPageSizeResponse.ProtoReflect.Descriptor instead.
+func (*ProductPageSizeResponse) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ProductPageSizeResponse) GetProducts() []*Product {
+	if x != nil {
+		return x.Products
+	}
+	return nil
+}
+
+func (x *ProductPageSizeResponse) GetAvailable() int64 {
+	if x != nil {
+		return x.Available
+	}
+	return 0
+}
+
 var File_inventory_inventory_proto protoreflect.FileDescriptor
 
 const file_inventory_inventory_proto_rawDesc = "" +
@@ -117,9 +337,30 @@ const file_inventory_inventory_proto_rawDesc = "" +
 	"\rHealthRequest\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\"(\n" +
 	"\x0eHealthResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status2J\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"\x8d\x02\n" +
+	"\aProduct\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x10\n" +
+	"\x03sku\x18\x02 \x01(\tR\x03sku\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1a\n" +
+	"\bcategory\x18\x05 \x01(\tR\bcategory\x12\"\n" +
+	"\fmanufacturer\x18\x06 \x01(\tR\fmanufacturer\x12\x16\n" +
+	"\x06weight\x18\a \x01(\x03R\x06weight\x12\x14\n" +
+	"\x05price\x18\b \x01(\x03R\x05price\x12\x1d\n" +
+	"\n" +
+	"base_price\x18\t \x01(\x03R\tbasePrice\x12\x1d\n" +
+	"\n" +
+	"issue_year\x18\n" +
+	" \x01(\x03R\tissueYear\"@\n" +
+	"\x16ProductPageSizeRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\x03R\x04size\"g\n" +
+	"\x17ProductPageSizeResponse\x12.\n" +
+	"\bproducts\x18\x01 \x03(\v2\x12.inventory.ProductR\bproducts\x12\x1c\n" +
+	"\tavailable\x18\x02 \x01(\x03R\tavailable2\xa4\x01\n" +
 	"\tInventory\x12=\n" +
-	"\x06Health\x12\x18.inventory.HealthRequest\x1a\x19.inventory.HealthResponseB\x15Z\x13glebateee.ai.v1;ai1b\x06proto3"
+	"\x06Health\x12\x18.inventory.HealthRequest\x1a\x19.inventory.HealthResponse\x12X\n" +
+	"\x0fProductPageSize\x12!.inventory.ProductPageSizeRequest\x1a\".inventory.ProductPageSizeResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
 
 var (
 	file_inventory_inventory_proto_rawDescOnce sync.Once
@@ -133,19 +374,25 @@ func file_inventory_inventory_proto_rawDescGZIP() []byte {
 	return file_inventory_inventory_proto_rawDescData
 }
 
-var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_inventory_inventory_proto_goTypes = []any{
-	(*HealthRequest)(nil),  // 0: inventory.HealthRequest
-	(*HealthResponse)(nil), // 1: inventory.HealthResponse
+	(*HealthRequest)(nil),           // 0: inventory.HealthRequest
+	(*HealthResponse)(nil),          // 1: inventory.HealthResponse
+	(*Product)(nil),                 // 2: inventory.Product
+	(*ProductPageSizeRequest)(nil),  // 3: inventory.ProductPageSizeRequest
+	(*ProductPageSizeResponse)(nil), // 4: inventory.ProductPageSizeResponse
 }
 var file_inventory_inventory_proto_depIdxs = []int32{
-	0, // 0: inventory.Inventory.Health:input_type -> inventory.HealthRequest
-	1, // 1: inventory.Inventory.Health:output_type -> inventory.HealthResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: inventory.ProductPageSizeResponse.products:type_name -> inventory.Product
+	0, // 1: inventory.Inventory.Health:input_type -> inventory.HealthRequest
+	3, // 2: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
+	1, // 3: inventory.Inventory.Health:output_type -> inventory.HealthResponse
+	4, // 4: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_inventory_inventory_proto_init() }
@@ -159,7 +406,7 @@ func file_inventory_inventory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_inventory_inventory_proto_rawDesc), len(file_inventory_inventory_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
