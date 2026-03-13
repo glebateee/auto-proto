@@ -6,9 +6,9 @@ vars:
     PROTO_FILE: proto/inventory/inventory.proto
     OUT_FILE: ./gen/go
 
-    COMMIT: '"added product pagination"'
-    TAG: 'v0.0.4'
-    TAG_DESCRIPTION: '"added product pagination tag"'
+    COMMIT: '"added product by category pagination"'
+    TAG: 'v0.0.5'
+    TAG_DESCRIPTION: '"added product by category pagination tag"'
 
 tasks:
   gen:

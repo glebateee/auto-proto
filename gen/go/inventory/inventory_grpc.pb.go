@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Inventory_Health_FullMethodName          = "/inventory.Inventory/Health"
-	Inventory_ProductPageSize_FullMethodName = "/inventory.Inventory/ProductPageSize"
+	Inventory_Health_FullMethodName                  = "/inventory.Inventory/Health"
+	Inventory_ProductPageSize_FullMethodName         = "/inventory.Inventory/ProductPageSize"
+	Inventory_ProductPageSizeCategory_FullMethodName = "/inventory.Inventory/ProductPageSizeCategory"
 )
 
 // InventoryClient is the client API for Inventory service.
@@ -29,6 +30,7 @@ const (
 type InventoryClient interface {
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
 	ProductPageSize(ctx context.Context, in *ProductPageSizeRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error)
+	ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error)
 }
 
 type inventoryClient struct {
@@ -59,12 +61,23 @@ func (c *inventoryClient) ProductPageSize(ctx context.Context, in *ProductPageSi
 	return out, nil
 }
 
+func (c *inventoryClient) ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductPageSizeCategoryResponse)
+	err := c.cc.Invoke(ctx, Inventory_ProductPageSizeCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InventoryServer is the server API for Inventory service.
 // All implementations must embed UnimplementedInventoryServer
 // for forward compatibility.
 type InventoryServer interface {
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
 	ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error)
+	ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedInventoryServer) Health(context.Context, *HealthRequest) (*He
 }
 func (UnimplementedInventoryServer) ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSize not implemented")
+}
+func (UnimplementedInventoryServer) ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSizeCategory not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
 func (UnimplementedInventoryServer) testEmbeddedByValue()                   {}
@@ -138,6 +154,24 @@ func _Inventory_ProductPageSize_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Inventory_ProductPageSizeCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductPageSizeCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServer).ProductPageSizeCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Inventory_ProductPageSizeCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServer).ProductPageSizeCategory(ctx, req.(*ProductPageSizeCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Inventory_ServiceDesc is the grpc.ServiceDesc for Inventory service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Inventory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProductPageSize",
 			Handler:    _Inventory_ProductPageSize_Handler,
+		},
+		{
+			MethodName: "ProductPageSizeCategory",
+			Handler:    _Inventory_ProductPageSizeCategory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

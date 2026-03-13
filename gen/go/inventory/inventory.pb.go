@@ -329,6 +329,118 @@ func (x *ProductPageSizeResponse) GetAvailable() int64 {
 	return 0
 }
 
+type ProductPageSizeCategoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Size          int64                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	CategoryId    int64                  `protobuf:"varint,3,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductPageSizeCategoryRequest) Reset() {
+	*x = ProductPageSizeCategoryRequest{}
+	mi := &file_inventory_inventory_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductPageSizeCategoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductPageSizeCategoryRequest) ProtoMessage() {}
+
+func (x *ProductPageSizeCategoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductPageSizeCategoryRequest.ProtoReflect.Descriptor instead.
+func (*ProductPageSizeCategoryRequest) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ProductPageSizeCategoryRequest) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ProductPageSizeCategoryRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ProductPageSizeCategoryRequest) GetCategoryId() int64 {
+	if x != nil {
+		return x.CategoryId
+	}
+	return 0
+}
+
+type ProductPageSizeCategoryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
+	Available     int64                  `protobuf:"varint,2,opt,name=available,proto3" json:"available,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductPageSizeCategoryResponse) Reset() {
+	*x = ProductPageSizeCategoryResponse{}
+	mi := &file_inventory_inventory_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductPageSizeCategoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductPageSizeCategoryResponse) ProtoMessage() {}
+
+func (x *ProductPageSizeCategoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductPageSizeCategoryResponse.ProtoReflect.Descriptor instead.
+func (*ProductPageSizeCategoryResponse) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ProductPageSizeCategoryResponse) GetProducts() []*Product {
+	if x != nil {
+		return x.Products
+	}
+	return nil
+}
+
+func (x *ProductPageSizeCategoryResponse) GetAvailable() int64 {
+	if x != nil {
+		return x.Available
+	}
+	return 0
+}
+
 var File_inventory_inventory_proto protoreflect.FileDescriptor
 
 const file_inventory_inventory_proto_rawDesc = "" +
@@ -357,10 +469,19 @@ const file_inventory_inventory_proto_rawDesc = "" +
 	"\x04size\x18\x02 \x01(\x03R\x04size\"g\n" +
 	"\x17ProductPageSizeResponse\x12.\n" +
 	"\bproducts\x18\x01 \x03(\v2\x12.inventory.ProductR\bproducts\x12\x1c\n" +
-	"\tavailable\x18\x02 \x01(\x03R\tavailable2\xa4\x01\n" +
+	"\tavailable\x18\x02 \x01(\x03R\tavailable\"i\n" +
+	"\x1eProductPageSizeCategoryRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\x03R\x04size\x12\x1f\n" +
+	"\vcategory_id\x18\x03 \x01(\x03R\n" +
+	"categoryId\"o\n" +
+	"\x1fProductPageSizeCategoryResponse\x12.\n" +
+	"\bproducts\x18\x01 \x03(\v2\x12.inventory.ProductR\bproducts\x12\x1c\n" +
+	"\tavailable\x18\x02 \x01(\x03R\tavailable2\x96\x02\n" +
 	"\tInventory\x12=\n" +
 	"\x06Health\x12\x18.inventory.HealthRequest\x1a\x19.inventory.HealthResponse\x12X\n" +
-	"\x0fProductPageSize\x12!.inventory.ProductPageSizeRequest\x1a\".inventory.ProductPageSizeResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
+	"\x0fProductPageSize\x12!.inventory.ProductPageSizeRequest\x1a\".inventory.ProductPageSizeResponse\x12p\n" +
+	"\x17ProductPageSizeCategory\x12).inventory.ProductPageSizeCategoryRequest\x1a*.inventory.ProductPageSizeCategoryResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
 
 var (
 	file_inventory_inventory_proto_rawDescOnce sync.Once
@@ -374,25 +495,30 @@ func file_inventory_inventory_proto_rawDescGZIP() []byte {
 	return file_inventory_inventory_proto_rawDescData
 }
 
-var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_inventory_inventory_proto_goTypes = []any{
-	(*HealthRequest)(nil),           // 0: inventory.HealthRequest
-	(*HealthResponse)(nil),          // 1: inventory.HealthResponse
-	(*Product)(nil),                 // 2: inventory.Product
-	(*ProductPageSizeRequest)(nil),  // 3: inventory.ProductPageSizeRequest
-	(*ProductPageSizeResponse)(nil), // 4: inventory.ProductPageSizeResponse
+	(*HealthRequest)(nil),                   // 0: inventory.HealthRequest
+	(*HealthResponse)(nil),                  // 1: inventory.HealthResponse
+	(*Product)(nil),                         // 2: inventory.Product
+	(*ProductPageSizeRequest)(nil),          // 3: inventory.ProductPageSizeRequest
+	(*ProductPageSizeResponse)(nil),         // 4: inventory.ProductPageSizeResponse
+	(*ProductPageSizeCategoryRequest)(nil),  // 5: inventory.ProductPageSizeCategoryRequest
+	(*ProductPageSizeCategoryResponse)(nil), // 6: inventory.ProductPageSizeCategoryResponse
 }
 var file_inventory_inventory_proto_depIdxs = []int32{
 	2, // 0: inventory.ProductPageSizeResponse.products:type_name -> inventory.Product
-	0, // 1: inventory.Inventory.Health:input_type -> inventory.HealthRequest
-	3, // 2: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
-	1, // 3: inventory.Inventory.Health:output_type -> inventory.HealthResponse
-	4, // 4: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: inventory.ProductPageSizeCategoryResponse.products:type_name -> inventory.Product
+	0, // 2: inventory.Inventory.Health:input_type -> inventory.HealthRequest
+	3, // 3: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
+	5, // 4: inventory.Inventory.ProductPageSizeCategory:input_type -> inventory.ProductPageSizeCategoryRequest
+	1, // 5: inventory.Inventory.Health:output_type -> inventory.HealthResponse
+	4, // 6: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
+	6, // 7: inventory.Inventory.ProductPageSizeCategory:output_type -> inventory.ProductPageSizeCategoryResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_inventory_inventory_proto_init() }
@@ -406,7 +532,7 @@ func file_inventory_inventory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_inventory_inventory_proto_rawDesc), len(file_inventory_inventory_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
