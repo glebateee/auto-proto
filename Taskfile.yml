@@ -6,9 +6,9 @@ vars:
     PROTO_FILE: proto/inventory/inventory.proto
     OUT_FILE: ./gen/go
 
-    COMMIT: '"changed product by category pagination"'
+    COMMIT: '"added timestamps to product"'
     TAG: 'v0.0.6'
-    TAG_DESCRIPTION: '"changed product by category pagination tag"'
+    TAG_DESCRIPTION: '"added timestamps to product"'
 
 tasks:
   gen:
@@ -27,7 +27,7 @@ tasks:
       - git commit -m {{ .COMMIT }}
       - git push origin main
       - git tag -a {{ .TAG }} -m {{ .TAG_DESCRIPTION }}
-      - git push origin {{ .TAG}}
+      - git push origin {{ .TAG }}
 
   default:
     desc: print list of available commands
