@@ -7,7 +7,7 @@ vars:
     OUT_FILE: ./gen/go
 
     COMMIT: '"added product list and update product"'
-    TAG: 'v0.0.9'
+    TAG: 'v0.0.10'
     TAG_DESCRIPTION: '"added product list and update product"'
 
 tasks:
