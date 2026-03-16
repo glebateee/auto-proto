@@ -30,7 +30,7 @@ const (
 type InventoryClient interface {
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
 	ProductPageSize(ctx context.Context, in *ProductPageSizeRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error)
-	ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error)
+	ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error)
 }
 
 type inventoryClient struct {
@@ -61,9 +61,9 @@ func (c *inventoryClient) ProductPageSize(ctx context.Context, in *ProductPageSi
 	return out, nil
 }
 
-func (c *inventoryClient) ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error) {
+func (c *inventoryClient) ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProductPageSizeResponse)
+	out := new(ProductPageSizeCategoryResponse)
 	err := c.cc.Invoke(ctx, Inventory_ProductPageSizeCategory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func (c *inventoryClient) ProductPageSizeCategory(ctx context.Context, in *Produ
 type InventoryServer interface {
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
 	ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error)
-	ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeResponse, error)
+	ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -94,7 +94,7 @@ func (UnimplementedInventoryServer) Health(context.Context, *HealthRequest) (*He
 func (UnimplementedInventoryServer) ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSize not implemented")
 }
-func (UnimplementedInventoryServer) ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeResponse, error) {
+func (UnimplementedInventoryServer) ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSizeCategory not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
