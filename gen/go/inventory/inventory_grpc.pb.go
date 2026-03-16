@@ -22,6 +22,8 @@ const (
 	Inventory_Health_FullMethodName                  = "/inventory.Inventory/Health"
 	Inventory_ProductPageSize_FullMethodName         = "/inventory.Inventory/ProductPageSize"
 	Inventory_ProductPageSizeCategory_FullMethodName = "/inventory.Inventory/ProductPageSizeCategory"
+	Inventory_ProductList_FullMethodName             = "/inventory.Inventory/ProductList"
+	Inventory_UpdateProduct_FullMethodName           = "/inventory.Inventory/UpdateProduct"
 )
 
 // InventoryClient is the client API for Inventory service.
@@ -31,6 +33,8 @@ type InventoryClient interface {
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
 	ProductPageSize(ctx context.Context, in *ProductPageSizeRequest, opts ...grpc.CallOption) (*ProductPageSizeResponse, error)
 	ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error)
+	ProductList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListResponse, error)
+	UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error)
 }
 
 type inventoryClient struct {
@@ -71,6 +75,26 @@ func (c *inventoryClient) ProductPageSizeCategory(ctx context.Context, in *Produ
 	return out, nil
 }
 
+func (c *inventoryClient) ProductList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductListResponse)
+	err := c.cc.Invoke(ctx, Inventory_ProductList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *inventoryClient) UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateProductResponse)
+	err := c.cc.Invoke(ctx, Inventory_UpdateProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InventoryServer is the server API for Inventory service.
 // All implementations must embed UnimplementedInventoryServer
 // for forward compatibility.
@@ -78,6 +102,8 @@ type InventoryServer interface {
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
 	ProductPageSize(context.Context, *ProductPageSizeRequest) (*ProductPageSizeResponse, error)
 	ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error)
+	ProductList(context.Context, *ProductListRequest) (*ProductListResponse, error)
+	UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -96,6 +122,12 @@ func (UnimplementedInventoryServer) ProductPageSize(context.Context, *ProductPag
 }
 func (UnimplementedInventoryServer) ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProductPageSizeCategory not implemented")
+}
+func (UnimplementedInventoryServer) ProductList(context.Context, *ProductListRequest) (*ProductListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProductList not implemented")
+}
+func (UnimplementedInventoryServer) UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
 func (UnimplementedInventoryServer) testEmbeddedByValue()                   {}
@@ -172,6 +204,42 @@ func _Inventory_ProductPageSizeCategory_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Inventory_ProductList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServer).ProductList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Inventory_ProductList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServer).ProductList(ctx, req.(*ProductListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Inventory_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServer).UpdateProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Inventory_UpdateProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServer).UpdateProduct(ctx, req.(*UpdateProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Inventory_ServiceDesc is the grpc.ServiceDesc for Inventory service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +258,14 @@ var Inventory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProductPageSizeCategory",
 			Handler:    _Inventory_ProductPageSizeCategory_Handler,
+		},
+		{
+			MethodName: "ProductList",
+			Handler:    _Inventory_ProductList_Handler,
+		},
+		{
+			MethodName: "UpdateProduct",
+			Handler:    _Inventory_UpdateProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

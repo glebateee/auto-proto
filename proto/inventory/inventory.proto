@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
 
 package inventory;
 
@@ -10,6 +11,9 @@ service Inventory{
     rpc Health(HealthRequest) returns (HealthResponse);
     rpc ProductPageSize(ProductPageSizeRequest) returns (ProductPageSizeResponse);
     rpc ProductPageSizeCategory(ProductPageSizeCategoryRequest) returns (ProductPageSizeCategoryResponse);
+    rpc ProductList(ProductListRequest) returns (ProductListResponse);
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+
 
 }
 
@@ -67,4 +71,39 @@ message ProductPageSizeCategoryRequest{
 message ProductPageSizeCategoryResponse{
     repeated Product products = 1;
     int64 available = 2;
+}
+
+// ###########################################
+// ##########      ProductList      ##########
+// ###########################################
+
+message ProductListRequest{}
+
+message ProductListResponse{
+    repeated Product products = 1;
+}
+
+// #############################################
+// ##########      UpdateProduct      ##########
+// #############################################
+
+message UpdateProductFields {
+    string name = 1;
+    string description = 2;
+    string category = 3;
+    string manufacturer = 4;
+    int64 weight = 5;
+    int64 price = 6;
+    int64 base_price = 7;
+    int64 issue_year = 8;
+}
+
+message UpdateProductRequest {
+    string sku = 1;
+    UpdateProductFields fields = 2;
+    google.protobuf.FieldMask update_mask = 3;
+}
+
+message UpdateProductResponse {
+    Product product = 1;
 }

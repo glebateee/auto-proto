@@ -9,6 +9,7 @@ package aiv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -458,11 +459,295 @@ func (x *ProductPageSizeCategoryResponse) GetAvailable() int64 {
 	return 0
 }
 
+type ProductListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductListRequest) Reset() {
+	*x = ProductListRequest{}
+	mi := &file_inventory_inventory_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductListRequest) ProtoMessage() {}
+
+func (x *ProductListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductListRequest.ProtoReflect.Descriptor instead.
+func (*ProductListRequest) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{7}
+}
+
+type ProductListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductListResponse) Reset() {
+	*x = ProductListResponse{}
+	mi := &file_inventory_inventory_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductListResponse) ProtoMessage() {}
+
+func (x *ProductListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductListResponse.ProtoReflect.Descriptor instead.
+func (*ProductListResponse) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ProductListResponse) GetProducts() []*Product {
+	if x != nil {
+		return x.Products
+	}
+	return nil
+}
+
+type UpdateProductFields struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Category      string                 `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
+	Manufacturer  string                 `protobuf:"bytes,4,opt,name=manufacturer,proto3" json:"manufacturer,omitempty"`
+	Weight        int64                  `protobuf:"varint,5,opt,name=weight,proto3" json:"weight,omitempty"`
+	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	BasePrice     int64                  `protobuf:"varint,7,opt,name=base_price,json=basePrice,proto3" json:"base_price,omitempty"`
+	IssueYear     int64                  `protobuf:"varint,8,opt,name=issue_year,json=issueYear,proto3" json:"issue_year,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateProductFields) Reset() {
+	*x = UpdateProductFields{}
+	mi := &file_inventory_inventory_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateProductFields) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateProductFields) ProtoMessage() {}
+
+func (x *UpdateProductFields) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateProductFields.ProtoReflect.Descriptor instead.
+func (*UpdateProductFields) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UpdateProductFields) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateProductFields) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateProductFields) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *UpdateProductFields) GetManufacturer() string {
+	if x != nil {
+		return x.Manufacturer
+	}
+	return ""
+}
+
+func (x *UpdateProductFields) GetWeight() int64 {
+	if x != nil {
+		return x.Weight
+	}
+	return 0
+}
+
+func (x *UpdateProductFields) GetPrice() int64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *UpdateProductFields) GetBasePrice() int64 {
+	if x != nil {
+		return x.BasePrice
+	}
+	return 0
+}
+
+func (x *UpdateProductFields) GetIssueYear() int64 {
+	if x != nil {
+		return x.IssueYear
+	}
+	return 0
+}
+
+type UpdateProductRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sku           string                 `protobuf:"bytes,1,opt,name=sku,proto3" json:"sku,omitempty"`
+	Fields        *UpdateProductFields   `protobuf:"bytes,2,opt,name=fields,proto3" json:"fields,omitempty"`
+	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,3,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateProductRequest) Reset() {
+	*x = UpdateProductRequest{}
+	mi := &file_inventory_inventory_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateProductRequest) ProtoMessage() {}
+
+func (x *UpdateProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateProductRequest.ProtoReflect.Descriptor instead.
+func (*UpdateProductRequest) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateProductRequest) GetSku() string {
+	if x != nil {
+		return x.Sku
+	}
+	return ""
+}
+
+func (x *UpdateProductRequest) GetFields() *UpdateProductFields {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+func (x *UpdateProductRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.UpdateMask
+	}
+	return nil
+}
+
+type UpdateProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Product       *Product               `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateProductResponse) Reset() {
+	*x = UpdateProductResponse{}
+	mi := &file_inventory_inventory_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateProductResponse) ProtoMessage() {}
+
+func (x *UpdateProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateProductResponse.ProtoReflect.Descriptor instead.
+func (*UpdateProductResponse) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UpdateProductResponse) GetProduct() *Product {
+	if x != nil {
+		return x.Product
+	}
+	return nil
+}
+
 var File_inventory_inventory_proto protoreflect.FileDescriptor
 
 const file_inventory_inventory_proto_rawDesc = "" +
 	"\n" +
-	"\x19inventory/inventory.proto\x12\tinventory\x1a\x1fgoogle/protobuf/timestamp.proto\"'\n" +
+	"\x19inventory/inventory.proto\x12\tinventory\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"'\n" +
 	"\rHealthRequest\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\"(\n" +
 	"\x0eHealthResponse\x12\x16\n" +
@@ -498,11 +783,34 @@ const file_inventory_inventory_proto_rawDesc = "" +
 	"categoryId\"o\n" +
 	"\x1fProductPageSizeCategoryResponse\x12.\n" +
 	"\bproducts\x18\x01 \x03(\v2\x12.inventory.ProductR\bproducts\x12\x1c\n" +
-	"\tavailable\x18\x02 \x01(\x03R\tavailable2\x96\x02\n" +
+	"\tavailable\x18\x02 \x01(\x03R\tavailable\"\x14\n" +
+	"\x12ProductListRequest\"E\n" +
+	"\x13ProductListResponse\x12.\n" +
+	"\bproducts\x18\x01 \x03(\v2\x12.inventory.ProductR\bproducts\"\xf7\x01\n" +
+	"\x13UpdateProductFields\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1a\n" +
+	"\bcategory\x18\x03 \x01(\tR\bcategory\x12\"\n" +
+	"\fmanufacturer\x18\x04 \x01(\tR\fmanufacturer\x12\x16\n" +
+	"\x06weight\x18\x05 \x01(\x03R\x06weight\x12\x14\n" +
+	"\x05price\x18\x06 \x01(\x03R\x05price\x12\x1d\n" +
+	"\n" +
+	"base_price\x18\a \x01(\x03R\tbasePrice\x12\x1d\n" +
+	"\n" +
+	"issue_year\x18\b \x01(\x03R\tissueYear\"\x9d\x01\n" +
+	"\x14UpdateProductRequest\x12\x10\n" +
+	"\x03sku\x18\x01 \x01(\tR\x03sku\x126\n" +
+	"\x06fields\x18\x02 \x01(\v2\x1e.inventory.UpdateProductFieldsR\x06fields\x12;\n" +
+	"\vupdate_mask\x18\x03 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
+	"updateMask\"E\n" +
+	"\x15UpdateProductResponse\x12,\n" +
+	"\aproduct\x18\x01 \x01(\v2\x12.inventory.ProductR\aproduct2\xb8\x03\n" +
 	"\tInventory\x12=\n" +
 	"\x06Health\x12\x18.inventory.HealthRequest\x1a\x19.inventory.HealthResponse\x12X\n" +
 	"\x0fProductPageSize\x12!.inventory.ProductPageSizeRequest\x1a\".inventory.ProductPageSizeResponse\x12p\n" +
-	"\x17ProductPageSizeCategory\x12).inventory.ProductPageSizeCategoryRequest\x1a*.inventory.ProductPageSizeCategoryResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
+	"\x17ProductPageSizeCategory\x12).inventory.ProductPageSizeCategoryRequest\x1a*.inventory.ProductPageSizeCategoryResponse\x12L\n" +
+	"\vProductList\x12\x1d.inventory.ProductListRequest\x1a\x1e.inventory.ProductListResponse\x12R\n" +
+	"\rUpdateProduct\x12\x1f.inventory.UpdateProductRequest\x1a .inventory.UpdateProductResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
 
 var (
 	file_inventory_inventory_proto_rawDescOnce sync.Once
@@ -516,7 +824,7 @@ func file_inventory_inventory_proto_rawDescGZIP() []byte {
 	return file_inventory_inventory_proto_rawDescData
 }
 
-var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_inventory_inventory_proto_goTypes = []any{
 	(*HealthRequest)(nil),                   // 0: inventory.HealthRequest
 	(*HealthResponse)(nil),                  // 1: inventory.HealthResponse
@@ -525,24 +833,38 @@ var file_inventory_inventory_proto_goTypes = []any{
 	(*ProductPageSizeResponse)(nil),         // 4: inventory.ProductPageSizeResponse
 	(*ProductPageSizeCategoryRequest)(nil),  // 5: inventory.ProductPageSizeCategoryRequest
 	(*ProductPageSizeCategoryResponse)(nil), // 6: inventory.ProductPageSizeCategoryResponse
-	(*timestamppb.Timestamp)(nil),           // 7: google.protobuf.Timestamp
+	(*ProductListRequest)(nil),              // 7: inventory.ProductListRequest
+	(*ProductListResponse)(nil),             // 8: inventory.ProductListResponse
+	(*UpdateProductFields)(nil),             // 9: inventory.UpdateProductFields
+	(*UpdateProductRequest)(nil),            // 10: inventory.UpdateProductRequest
+	(*UpdateProductResponse)(nil),           // 11: inventory.UpdateProductResponse
+	(*timestamppb.Timestamp)(nil),           // 12: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),           // 13: google.protobuf.FieldMask
 }
 var file_inventory_inventory_proto_depIdxs = []int32{
-	7, // 0: inventory.Product.created_at:type_name -> google.protobuf.Timestamp
-	7, // 1: inventory.Product.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 2: inventory.ProductPageSizeResponse.products:type_name -> inventory.Product
-	2, // 3: inventory.ProductPageSizeCategoryResponse.products:type_name -> inventory.Product
-	0, // 4: inventory.Inventory.Health:input_type -> inventory.HealthRequest
-	3, // 5: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
-	5, // 6: inventory.Inventory.ProductPageSizeCategory:input_type -> inventory.ProductPageSizeCategoryRequest
-	1, // 7: inventory.Inventory.Health:output_type -> inventory.HealthResponse
-	4, // 8: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
-	6, // 9: inventory.Inventory.ProductPageSizeCategory:output_type -> inventory.ProductPageSizeCategoryResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	12, // 0: inventory.Product.created_at:type_name -> google.protobuf.Timestamp
+	12, // 1: inventory.Product.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 2: inventory.ProductPageSizeResponse.products:type_name -> inventory.Product
+	2,  // 3: inventory.ProductPageSizeCategoryResponse.products:type_name -> inventory.Product
+	2,  // 4: inventory.ProductListResponse.products:type_name -> inventory.Product
+	9,  // 5: inventory.UpdateProductRequest.fields:type_name -> inventory.UpdateProductFields
+	13, // 6: inventory.UpdateProductRequest.update_mask:type_name -> google.protobuf.FieldMask
+	2,  // 7: inventory.UpdateProductResponse.product:type_name -> inventory.Product
+	0,  // 8: inventory.Inventory.Health:input_type -> inventory.HealthRequest
+	3,  // 9: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
+	5,  // 10: inventory.Inventory.ProductPageSizeCategory:input_type -> inventory.ProductPageSizeCategoryRequest
+	7,  // 11: inventory.Inventory.ProductList:input_type -> inventory.ProductListRequest
+	10, // 12: inventory.Inventory.UpdateProduct:input_type -> inventory.UpdateProductRequest
+	1,  // 13: inventory.Inventory.Health:output_type -> inventory.HealthResponse
+	4,  // 14: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
+	6,  // 15: inventory.Inventory.ProductPageSizeCategory:output_type -> inventory.ProductPageSizeCategoryResponse
+	8,  // 16: inventory.Inventory.ProductList:output_type -> inventory.ProductListResponse
+	11, // 17: inventory.Inventory.UpdateProduct:output_type -> inventory.UpdateProductResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_inventory_inventory_proto_init() }
@@ -556,7 +878,7 @@ func file_inventory_inventory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_inventory_inventory_proto_rawDesc), len(file_inventory_inventory_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

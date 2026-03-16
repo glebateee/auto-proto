@@ -6,9 +6,9 @@ vars:
     PROTO_FILE: proto/inventory/inventory.proto
     OUT_FILE: ./gen/go
 
-    COMMIT: '"changed methods again"'
+    COMMIT: '"added product list and update product"'
     TAG: 'v0.0.9'
-    TAG_DESCRIPTION: '"changed methods again"'
+    TAG_DESCRIPTION: '"added product list and update product"'
 
 tasks:
   gen:
