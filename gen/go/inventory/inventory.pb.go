@@ -743,6 +743,86 @@ func (x *UpdateProductResponse) GetProduct() *Product {
 	return nil
 }
 
+type DeleteProductRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sku           string                 `protobuf:"bytes,1,opt,name=sku,proto3" json:"sku,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteProductRequest) Reset() {
+	*x = DeleteProductRequest{}
+	mi := &file_inventory_inventory_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteProductRequest) ProtoMessage() {}
+
+func (x *DeleteProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteProductRequest.ProtoReflect.Descriptor instead.
+func (*DeleteProductRequest) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DeleteProductRequest) GetSku() string {
+	if x != nil {
+		return x.Sku
+	}
+	return ""
+}
+
+type DeleteProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteProductResponse) Reset() {
+	*x = DeleteProductResponse{}
+	mi := &file_inventory_inventory_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteProductResponse) ProtoMessage() {}
+
+func (x *DeleteProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_inventory_inventory_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteProductResponse.ProtoReflect.Descriptor instead.
+func (*DeleteProductResponse) Descriptor() ([]byte, []int) {
+	return file_inventory_inventory_proto_rawDescGZIP(), []int{13}
+}
+
 var File_inventory_inventory_proto protoreflect.FileDescriptor
 
 const file_inventory_inventory_proto_rawDesc = "" +
@@ -804,13 +884,17 @@ const file_inventory_inventory_proto_rawDesc = "" +
 	"\vupdate_mask\x18\x03 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"E\n" +
 	"\x15UpdateProductResponse\x12,\n" +
-	"\aproduct\x18\x01 \x01(\v2\x12.inventory.ProductR\aproduct2\xb8\x03\n" +
+	"\aproduct\x18\x01 \x01(\v2\x12.inventory.ProductR\aproduct\"(\n" +
+	"\x14DeleteProductRequest\x12\x10\n" +
+	"\x03sku\x18\x01 \x01(\tR\x03sku\"\x17\n" +
+	"\x15DeleteProductResponse2\x8c\x04\n" +
 	"\tInventory\x12=\n" +
 	"\x06Health\x12\x18.inventory.HealthRequest\x1a\x19.inventory.HealthResponse\x12X\n" +
 	"\x0fProductPageSize\x12!.inventory.ProductPageSizeRequest\x1a\".inventory.ProductPageSizeResponse\x12p\n" +
 	"\x17ProductPageSizeCategory\x12).inventory.ProductPageSizeCategoryRequest\x1a*.inventory.ProductPageSizeCategoryResponse\x12L\n" +
 	"\vProductList\x12\x1d.inventory.ProductListRequest\x1a\x1e.inventory.ProductListResponse\x12R\n" +
-	"\rUpdateProduct\x12\x1f.inventory.UpdateProductRequest\x1a .inventory.UpdateProductResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
+	"\rUpdateProduct\x12\x1f.inventory.UpdateProductRequest\x1a .inventory.UpdateProductResponse\x12R\n" +
+	"\rDeleteProduct\x12\x1f.inventory.DeleteProductRequest\x1a .inventory.DeleteProductResponseB\x16Z\x14glebateee.ai.v1;aiv1b\x06proto3"
 
 var (
 	file_inventory_inventory_proto_rawDescOnce sync.Once
@@ -824,7 +908,7 @@ func file_inventory_inventory_proto_rawDescGZIP() []byte {
 	return file_inventory_inventory_proto_rawDescData
 }
 
-var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_inventory_inventory_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_inventory_inventory_proto_goTypes = []any{
 	(*HealthRequest)(nil),                   // 0: inventory.HealthRequest
 	(*HealthResponse)(nil),                  // 1: inventory.HealthResponse
@@ -838,30 +922,34 @@ var file_inventory_inventory_proto_goTypes = []any{
 	(*UpdateProductFields)(nil),             // 9: inventory.UpdateProductFields
 	(*UpdateProductRequest)(nil),            // 10: inventory.UpdateProductRequest
 	(*UpdateProductResponse)(nil),           // 11: inventory.UpdateProductResponse
-	(*timestamppb.Timestamp)(nil),           // 12: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),           // 13: google.protobuf.FieldMask
+	(*DeleteProductRequest)(nil),            // 12: inventory.DeleteProductRequest
+	(*DeleteProductResponse)(nil),           // 13: inventory.DeleteProductResponse
+	(*timestamppb.Timestamp)(nil),           // 14: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),           // 15: google.protobuf.FieldMask
 }
 var file_inventory_inventory_proto_depIdxs = []int32{
-	12, // 0: inventory.Product.created_at:type_name -> google.protobuf.Timestamp
-	12, // 1: inventory.Product.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 0: inventory.Product.created_at:type_name -> google.protobuf.Timestamp
+	14, // 1: inventory.Product.updated_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: inventory.ProductPageSizeResponse.products:type_name -> inventory.Product
 	2,  // 3: inventory.ProductPageSizeCategoryResponse.products:type_name -> inventory.Product
 	2,  // 4: inventory.ProductListResponse.products:type_name -> inventory.Product
 	9,  // 5: inventory.UpdateProductRequest.fields:type_name -> inventory.UpdateProductFields
-	13, // 6: inventory.UpdateProductRequest.update_mask:type_name -> google.protobuf.FieldMask
+	15, // 6: inventory.UpdateProductRequest.update_mask:type_name -> google.protobuf.FieldMask
 	2,  // 7: inventory.UpdateProductResponse.product:type_name -> inventory.Product
 	0,  // 8: inventory.Inventory.Health:input_type -> inventory.HealthRequest
 	3,  // 9: inventory.Inventory.ProductPageSize:input_type -> inventory.ProductPageSizeRequest
 	5,  // 10: inventory.Inventory.ProductPageSizeCategory:input_type -> inventory.ProductPageSizeCategoryRequest
 	7,  // 11: inventory.Inventory.ProductList:input_type -> inventory.ProductListRequest
 	10, // 12: inventory.Inventory.UpdateProduct:input_type -> inventory.UpdateProductRequest
-	1,  // 13: inventory.Inventory.Health:output_type -> inventory.HealthResponse
-	4,  // 14: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
-	6,  // 15: inventory.Inventory.ProductPageSizeCategory:output_type -> inventory.ProductPageSizeCategoryResponse
-	8,  // 16: inventory.Inventory.ProductList:output_type -> inventory.ProductListResponse
-	11, // 17: inventory.Inventory.UpdateProduct:output_type -> inventory.UpdateProductResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
+	12, // 13: inventory.Inventory.DeleteProduct:input_type -> inventory.DeleteProductRequest
+	1,  // 14: inventory.Inventory.Health:output_type -> inventory.HealthResponse
+	4,  // 15: inventory.Inventory.ProductPageSize:output_type -> inventory.ProductPageSizeResponse
+	6,  // 16: inventory.Inventory.ProductPageSizeCategory:output_type -> inventory.ProductPageSizeCategoryResponse
+	8,  // 17: inventory.Inventory.ProductList:output_type -> inventory.ProductListResponse
+	11, // 18: inventory.Inventory.UpdateProduct:output_type -> inventory.UpdateProductResponse
+	13, // 19: inventory.Inventory.DeleteProduct:output_type -> inventory.DeleteProductResponse
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
 	8,  // [8:8] is the sub-list for extension extendee
 	0,  // [0:8] is the sub-list for field type_name
@@ -878,7 +966,7 @@ func file_inventory_inventory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_inventory_inventory_proto_rawDesc), len(file_inventory_inventory_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

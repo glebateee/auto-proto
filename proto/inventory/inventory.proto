@@ -13,6 +13,7 @@ service Inventory{
     rpc ProductPageSizeCategory(ProductPageSizeCategoryRequest) returns (ProductPageSizeCategoryResponse);
     rpc ProductList(ProductListRequest) returns (ProductListResponse);
     rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
 
 
 }
@@ -106,4 +107,17 @@ message UpdateProductRequest {
 
 message UpdateProductResponse {
     Product product = 1;
+}
+
+
+// #############################################
+// ##########      DeleteProduct      ##########
+// #############################################
+
+
+message DeleteProductRequest{
+    string sku  = 1;
+}
+
+message DeleteProductResponse{
 }

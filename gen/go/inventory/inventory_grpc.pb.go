@@ -24,6 +24,7 @@ const (
 	Inventory_ProductPageSizeCategory_FullMethodName = "/inventory.Inventory/ProductPageSizeCategory"
 	Inventory_ProductList_FullMethodName             = "/inventory.Inventory/ProductList"
 	Inventory_UpdateProduct_FullMethodName           = "/inventory.Inventory/UpdateProduct"
+	Inventory_DeleteProduct_FullMethodName           = "/inventory.Inventory/DeleteProduct"
 )
 
 // InventoryClient is the client API for Inventory service.
@@ -35,6 +36,7 @@ type InventoryClient interface {
 	ProductPageSizeCategory(ctx context.Context, in *ProductPageSizeCategoryRequest, opts ...grpc.CallOption) (*ProductPageSizeCategoryResponse, error)
 	ProductList(ctx context.Context, in *ProductListRequest, opts ...grpc.CallOption) (*ProductListResponse, error)
 	UpdateProduct(ctx context.Context, in *UpdateProductRequest, opts ...grpc.CallOption) (*UpdateProductResponse, error)
+	DeleteProduct(ctx context.Context, in *DeleteProductRequest, opts ...grpc.CallOption) (*DeleteProductResponse, error)
 }
 
 type inventoryClient struct {
@@ -95,6 +97,16 @@ func (c *inventoryClient) UpdateProduct(ctx context.Context, in *UpdateProductRe
 	return out, nil
 }
 
+func (c *inventoryClient) DeleteProduct(ctx context.Context, in *DeleteProductRequest, opts ...grpc.CallOption) (*DeleteProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteProductResponse)
+	err := c.cc.Invoke(ctx, Inventory_DeleteProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InventoryServer is the server API for Inventory service.
 // All implementations must embed UnimplementedInventoryServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type InventoryServer interface {
 	ProductPageSizeCategory(context.Context, *ProductPageSizeCategoryRequest) (*ProductPageSizeCategoryResponse, error)
 	ProductList(context.Context, *ProductListRequest) (*ProductListResponse, error)
 	UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error)
+	DeleteProduct(context.Context, *DeleteProductRequest) (*DeleteProductResponse, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedInventoryServer) ProductList(context.Context, *ProductListReq
 }
 func (UnimplementedInventoryServer) UpdateProduct(context.Context, *UpdateProductRequest) (*UpdateProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
+}
+func (UnimplementedInventoryServer) DeleteProduct(context.Context, *DeleteProductRequest) (*DeleteProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
 func (UnimplementedInventoryServer) testEmbeddedByValue()                   {}
@@ -240,6 +256,24 @@ func _Inventory_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Inventory_DeleteProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InventoryServer).DeleteProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Inventory_DeleteProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InventoryServer).DeleteProduct(ctx, req.(*DeleteProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Inventory_ServiceDesc is the grpc.ServiceDesc for Inventory service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var Inventory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateProduct",
 			Handler:    _Inventory_UpdateProduct_Handler,
+		},
+		{
+			MethodName: "DeleteProduct",
+			Handler:    _Inventory_DeleteProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
